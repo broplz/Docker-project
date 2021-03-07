@@ -29,9 +29,10 @@ RUN chown -R www-data:www-data /var/www/*
 # Выношу за контейнеры номера портов чтобы были видимы за пределами контейнер    а
 EXPOSE 80 443
 
-# копирую скрипт инициализирующий сервисы
+# копирую скрипты
 COPY ./srcs/init.sh /tmp/init.sh
-COPY ./srcs/autoindex.sh /tmp/autoindex.sh
+COPY ./srcs/autoindex_off.sh /tmp/autoindex_off.sh
+COPY ./srcs/autoindex_on.sh /tmp/autoindex_on.sh
 
 # Запуск команд
 ENTRYPOINT sh /tmp/init.sh && cat /var/log/nginx/error.log && /bin/bash
